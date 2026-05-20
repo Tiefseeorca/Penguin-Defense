@@ -4,7 +4,7 @@ class UpgradeCard extends Card {
 	constructor (id, name, towerClass, statName, effectFn, amount, mode, cost, img, rate=1, description = '') {
 		super (
 		id,
-		'upgrade',		// ersetzen durch instanceof UpgradeCard im nächsten Schritt
+		'upgrade',
 		name,
 		{
 			description,
@@ -78,7 +78,7 @@ class SpeedCard extends UpgradeCard {
 	}
 }
 
-// Penguin Snowball Tower
+// penguin snowball tower
 class PenguinRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -143,7 +143,7 @@ class PenguinSpeedEpicCard extends SpeedCard {
 	}
 }
 
-// PineconeGunner Tower
+// PineconeGunner tower
 class PineconeRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -228,7 +228,7 @@ class PineconePierceCard extends UpgradeCard {
 	}
 }
 
-// Catapult Tower
+// Catapult tower
 class CatapultRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -293,7 +293,7 @@ class CatapultSpeedEpicCard extends SpeedCard {
 	}
 }
 
-// SnowballGun Tower
+// SnowballGun tower
 class SnowballGunRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -358,7 +358,7 @@ class SnowballGunSpeedEpicCard extends SpeedCard {
 	}
 }
 
-// IceMage Tower
+// IceMage tower
 class IceMageRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -423,7 +423,7 @@ class IceMageSpeedEpicCard extends SpeedCard {
 	}
 }
 
-// Superpinguin Tower, Author: Jeremias Möller
+// Superpenguin tower, Author: Jeremias Möller
 class SuperPenguinRangeSmallCard extends RangeCard {
 	static { CardRegistry.register(this);}
 	
@@ -456,7 +456,7 @@ class SuperPenguinRangeEpicCard extends RangeCard {
 	}
 }
 
-class SuperPinguenSpeedSmallCard extends SpeedCard {
+class SuperPenguinSpeedSmallCard extends SpeedCard {
 	static { CardRegistry.register(this);}
 	
 	constructor() {

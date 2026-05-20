@@ -1,5 +1,5 @@
-// Author:	Philipp Locher - statische Funktionen
-//			Timo Lauterbach - Animation und Steuerung
+// Author:	Philipp Locher - static functions
+//			Timo Lauterbach - animation and controls
 class Ui {
 	// Timo	-----------------------------------------------------------
 	loading = false;
@@ -266,14 +266,14 @@ class Ui {
 	}
 	
 	// Philipp:	--------------------------------------------------------------------------------------------------------------------------------------------------------------
-	// Sprechblasen zeichnen
+	// draw bubble
     static drawBubble(ctx, x, y, width, height) {
         const radius = 12;
         const topY = y - height;
 
         const pointerWidth = 34;
         const pointerHeight = 24;
-        const pointerOffsetX = 28; // Abstand von links bis zum Zeiger
+        const pointerOffsetX = 28; // pointer offset from left side
 
         const pointerStartX = x + pointerOffsetX;
         const pointerTipX = pointerStartX + 10;
@@ -282,29 +282,29 @@ class Ui {
         ctx.save();
         ctx.beginPath();
 
-        // Start oben links
+        // start top left
         ctx.moveTo(x + radius, topY);
 
-        // obere Kante
+        // upper border
         ctx.lineTo(x + width - radius, topY);
         ctx.arcTo(x + width, topY, x + width, topY + radius, radius);
 
-        // rechte Kante
+        // right border
         ctx.lineTo(x + width, y - radius);
         ctx.arcTo(x + width, y, x + width - radius, y, radius);
 
-        // untere Kante bis vor den Zeiger
+        // lower border until pointer
         ctx.lineTo(pointerEndX, y);
 
-        // Zeiger
+        // pointer
         ctx.lineTo(pointerTipX, y + pointerHeight);
         ctx.lineTo(pointerStartX, y);
 
-        // untere Kante links weiter
+        // lower border after pointer
         ctx.lineTo(x + radius, y);
         ctx.arcTo(x, y, x, y - radius, radius);
 
-        // linke Kante
+        // left border
         ctx.lineTo(x, topY + radius);
         ctx.arcTo(x, topY, x + radius, topY, radius);
 
@@ -322,7 +322,7 @@ class Ui {
         ctx.restore();
     }
 	
-	// Textumbrüche in Canvas
+	// manage linebreak in canvas
 	static wrapText(ctx, text, maxWidth) {
 		const words = text.split(' ');
 		const lines = [];
@@ -347,7 +347,7 @@ class Ui {
 		return lines;
 	}
 	
-	// Text in Sprechblasen zeichnen
+	// draw text in bubbles
 	static drawBubbleText(ctx, text, bubbleX, bubbleY, bubbleWidth, bubbleHeight) {
 		const topY = bubbleY - bubbleHeight;
 		
@@ -375,8 +375,8 @@ class Ui {
 		
 		return Ui.padding * 2 + lines.length * Ui.lineHeight;
 	}
-	
-	// Turm Position ermitteln für Upgrade Marker (ähnlich wie getClickedTower in prototype.js)
+
+	// get tower position for upgrade marker position
 	static getTowerAtPosition(x, y) {
 		for(let tower of towers){
 			if(Util.getDistance([x, y], [tower.posX, tower.posY]) < tower.hitboxRadius) {
@@ -386,7 +386,7 @@ class Ui {
 		return null;
 	}
 	
-	// Upgrade Marker für upgrade Platzierung zeichnen
+	// draw upgrade marker for placement
 	static drawUpgradeArrow(ctx, x, y, width, height, fillColor) {
 		const radius = 8;
 		const pointerWidth = 18;

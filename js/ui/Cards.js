@@ -1,5 +1,5 @@
 // Author: Philipp Locher
-// Erweiterungen: Timo Lauterbach (markiert)
+// Additions: Timo Lauterbach (marked)
 class Card{
 	/*static RANGE_DESC = "Erhöht die Angriffsreichweite";
 	static SPEED_DESC = "Erhöht die Angriffsgeschwindigkeit";
@@ -45,11 +45,11 @@ class Card{
 	static get PIERCE_DESC()	{ return Card._DESCS[Languages.language]["PierceDesc"]; }
 	static get DICT() { return Card._DESCS[Languages.language]; }
 	
-	id;			// einzigartiger Name
-	type;		// Turm / Upgrade / ... evtl. weitere
-	name;		// Anzeigename
-	data;		// Eigenschaften bzw Effekte
-	img;		// img aus HTML
+	id;			// unique name
+	type;		// tower / upgrade / etc.
+	name;		// shown name
+	data;		// stats and effects
+	img;		// img from html
 	rate;
 	
 	constructor(id, type, name, data, img, rate){
@@ -99,7 +99,7 @@ class CardPool{
 		return deck;
 	}
 	
-	static weightedRandom(list) {			// ermöglicht Berücksichtigung der drop Rate im Card Objekt
+	static weightedRandom(list) {			// includes drop rate from card object
 		let totalRate = 0;
 		
 		for (let i = 0; i < list.length; i++){
@@ -115,7 +115,7 @@ class CardPool{
 		return list[list.length -1];
 	}
 	
-	static removeCardOnce(list, card) {		// Verhindert, dass Karten mehrfach gezogen werden können
+	static removeCardOnce(list, card) {		// prevents cards from being drawn multiple times
 		for (let i = 0; i < list.length; i++){
 			if (list[i] === card) {
 				list.splice(i,1);
@@ -151,14 +151,14 @@ class CardPool{
 		
 		if(pool.length === 0) return result;
 		
-		// Immer einen Turm ziehen
+		// always get one tower
 		if (allTowers.length > 0) {
 			let towerCard = CardPool.weightedRandom(allTowers);
 			result.push(towerCard);
 			CardPool.removeCardOnce(pool, towerCard);
 		}
 	
-		// Günstigste Karte im verbleibenden Pool suchen
+		// get cheapest remaining card from pool
 		let cheapestCost = Infinity;
 		for (let card of pool) {
 			if (card.data.cost < cheapestCost) {
@@ -166,7 +166,7 @@ class CardPool{
 			}
 		}
 	
-		// eine bezahlbare Karte garantieren, aber nur wenn der Spieler sich überhaupt mindestens die günstigste Karte leisten kann
+		// show at least one affordable card as long as player has enough currency for cheapest available card
 		if (money >= cheapestCost) {
 			let affordableCards = [];
 	
