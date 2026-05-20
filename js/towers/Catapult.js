@@ -12,7 +12,7 @@ class Catapult extends Tower {
 		"English":	"Slings a big, slow snowball with area damage. Hits multiple enemies at once and is especially strong against big clusters of enemies."
 	};
 	static get DESC() {
-		let desc = Fisher._DESCS[language];
+		let desc = Fisher._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -21,7 +21,7 @@ class Catapult extends Tower {
 		"English":	"Catapult"
 	}
 	static get NAME() {
-		let name = Catapult._NAMES[language];
+		let name = Catapult._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

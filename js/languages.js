@@ -71,21 +71,25 @@ class Languages {
 		return texts;
 	}
 	
-	static BUTTON_IDS = {
+	static _BUTTON_IDS = {
 		"German": {
-			"Play":		"PLAY_BUTTON",
-			"Pause":	"PAUSE_BUTTON",
-			"Continue":	"CONTINUE_BUTTON",
-			"MainMenu":	"MAIN_MENU_BUTTON",
-			"Reroll":	"REROLL_BUTTON"
+			"Levels":	"LEVELS_BUTTON",
+			"Play":		"PLAY_LEVEL_BUTTON",
+			"Continue":	"CONTINUE_BUTTON_GER",
+			"MainMenu":	"MAIN_MENU_BUTTON_GER",
+			"Reroll":	"REROLL_BUTTON_GER"
 		},
 		"English": {
-			"Play":		"PLAY_BUTTON",
-			"Pause":	"PAUSE_BUTTON",
-			"Continue":	"CONTINUE_BUTTON",
-			"MainMenu":	"MAIN_MENU_BUTTON",
-			"Reroll":	"REROLL_BUTTON"
+			"Levels":	"LEVELS_BUTTON",
+			"Play":		"PLAY_LEVEL_BUTTON",
+			"Continue":	"CONTINUE_BUTTON_EN",
+			"MainMenu":	"MAIN_MENU_BUTTON_EN",
+			"Reroll":	"REROLL_BUTTON_EN"
 		}
+	}
+	
+	static button(buttonTag) {
+		return Languages._BUTTON_IDS[Languages.language][buttonTag];
 	}
 	
 	static get START_MESSAGE() {
@@ -93,5 +97,19 @@ class Languages {
 			"German":	"Klicke zum Starten",
 			"English":	"Click to Start"
 		}[Languages.language];
+	}
+	
+	static _STAT_SUMMARY_DICT = {
+		"German":	{
+			"Range":	"Reichw.: ",
+			"Speed":	"Geschw.: "
+		},
+		"English":	{
+			"Range":	"Range: ",
+			"Speed":	"Speed: "
+		}
+	}
+	static statSummary(stat) {
+		return Languages._STAT_SUMMARY_DICT[Languages.language][stat];
 	}
 }

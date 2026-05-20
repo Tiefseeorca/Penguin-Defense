@@ -13,7 +13,7 @@ class SnowballGun extends Tower {
 		"English":	"Shoots snowballs in 8 directions simultaneously. Hits multiple enemies at once."
 	};
 	static get DESC() {
-		let desc = SnowballGun._DESCS[language];
+		let desc = SnowballGun._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -22,7 +22,7 @@ class SnowballGun extends Tower {
 		"English":	"Snowball Gun"
 	}
 	static get NAME() {
-		let name = SnowballGun._NAMES[language];
+		let name = SnowballGun._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}
