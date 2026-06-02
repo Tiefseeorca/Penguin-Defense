@@ -57,6 +57,18 @@ class Tower {
 		if(this.selected) { this.showStats(); }
 	}
 	
+	static getBubbleSummaryLines(tower) {
+		let lines = [];
+		let statNames = ["Range", "Speed"];
+		let stats =	[tower.range, Math.round(tower.attackSpeed*100)/100];
+		for(let i = 0; i < statNames.length; i++) {
+			let tmp = Languages.statSummary(statNames[i]);
+			tmp += stats[i];
+			lines.push(tmp);
+		}
+		return lines;
+	}
+	
 	showStats() {
 		let ctx = Tower.cv.getContext("2d");
 		ctx.beginPath();
@@ -68,12 +80,19 @@ class Tower {
 			ctx.fill();
 			ctx.restore();
 		}
-		let text = "Reichw.: " + this.range + " Geschw.: " + (Math.round(this.attackSpeed*100)/100);
-		//let text2 = Ui.wrapText(ctx, text, 150);
-		let bubbleWidth = 110;
-		let bubbleHeight = Ui.getBubbleHeight (ctx, text, bubbleWidth)
+		let lines = Tower.getBubbleSummaryLines(this);
+		let bubbleWidth = 0;
+		ctx.save();
+		ctx.font = Ui.fontSize;
+		for(let line of lines) {
+			let w = ctx.measureText(line).width;
+			if(w > bubbleWidth) bubbleWidth = w;
+		}
+		bubbleWidth += 2 * Ui.padding;
+		ctx.restore();
+		let bubbleHeight = Ui.getBubbleHeightFromLines(lines);
 		Ui.drawBubble(ctx, this._posX, this._posY, bubbleWidth, bubbleHeight);
-		Ui.drawBubbleText(ctx, text, this._posX, this._posY, bubbleWidth, bubbleHeight);
+		Ui.drawBubbleLines(ctx, lines, this._posX, this._posY, bubbleHeight);
 	}
 	
 	// Turn towards the targeted enemy and normalise the vector

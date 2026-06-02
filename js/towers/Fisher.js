@@ -13,7 +13,7 @@ class Fisher extends Tower {
 		"English":	"Throws with Trouterangs at enemies, that always return to it. Can only be placed in water."
 	};
 	static get DESC() {
-		let desc = Fisher._DESCS[language];
+		let desc = Fisher._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -22,7 +22,7 @@ class Fisher extends Tower {
 		"English":	"Fisher"
 	}
 	static get NAME() {
-		let name = Fisher._NAMES[language];
+		let name = Fisher._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

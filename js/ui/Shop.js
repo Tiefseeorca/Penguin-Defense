@@ -40,9 +40,11 @@ class Shop {
 		
 //		this.canvas.addEventListener("mousemove", this.handleMouseMove.bind(this));		// .bind(this) schafft den Bezug auf die "Karte" anstatt auf das ganze Canvas
 		window.addEventListener("mousedown", this.handleMouseDown.bind(this));
-		// DEBUG
-		this.rerollImg = document.getElementById("REROLL");
-		// DEBUG END
+		this.setLanguageButtons();
+	}
+	
+	setLanguageButtons() {
+		this.rerollImg = document.getElementById(Languages.button("Reroll"));
 	}
 	
 // Klick Event an Position erfassen und mit Index der geklickten Karte "verbinden"

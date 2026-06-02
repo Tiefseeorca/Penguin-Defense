@@ -12,7 +12,7 @@ class IceMage extends Tower {
 		"English":	"Throws ice spikes that split up after a hit. Hits multiple enemies in succession. Also slows down enemies."
 	};
 	static get DESC() {
-		let desc = IceMage._DESCS[language];
+		let desc = IceMage._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -21,7 +21,7 @@ class IceMage extends Tower {
 		"English":	"Ice Mage"
 	}
 	static get NAME() {
-		let name = IceMage._NAMES[language];
+		let name = IceMage._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

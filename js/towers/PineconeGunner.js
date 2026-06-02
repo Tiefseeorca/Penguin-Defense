@@ -12,7 +12,7 @@ class PineconeGunner extends Tower {
 		"English":	"Throws pine cones that pierce enemies. Hits multiple enemies at once and is strong against bigger groups."
 	};
 	static get DESC() {
-		let desc = PineconeGunner._DESCS[language];
+		let desc = PineconeGunner._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -21,7 +21,7 @@ class PineconeGunner extends Tower {
 		"English":	"Cone Gunner"
 	}
 	static get NAME() {
-		let name = PineconeGunner._NAMES[language];
+		let name = PineconeGunner._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

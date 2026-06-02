@@ -17,8 +17,7 @@ class Menu {
 	
 	constructor(medalsData) {
 		this.backgroundImg = document.getElementById("MENU_BACKGROUND");
-		this.levelsButton = document.getElementById("LEVELS_BUTTON");
-		this.playButton = document.getElementById("PLAY_LEVEL_BUTTON");
+		this.setLanguageButtons();
 		this.scrollRightButton = document.getElementById("SCROLL_RIGHT_BUTTON");
 		this.scrollLeftButton = document.getElementById("SCROLL_LEFT_BUTTON");
 		this.selectBorder = document.getElementById("SELECT_BORDER");
@@ -28,6 +27,11 @@ class Menu {
 		this.clickButtonFunction = this.clickButton.bind(this);
 		this.medalsImg = document.getElementById("MEDALS");
 		this.medalsData = medalsData;
+	}
+	
+	setLanguageButtons() {
+		this.levelsButton = document.getElementById(Languages.button("Levels"));
+		this.playButton = document.getElementById(Languages.button("Play"));
 	}
 	
 	// loads the main menu to be displayed and interacted with
