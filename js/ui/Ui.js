@@ -35,6 +35,12 @@ class Ui {
 	static lineHeight = 18;
 	static upgradeArrow = null;
 
+	// End screen localization
+	static WinGer = "Gewonnen!";
+	static LoseGer = "Verloren!";
+	static WinEng = "You Win!";
+	static LoseEng = "You Lose!";
+
 	// UI Sounds
 	static buyAudio;
 	static upgradeAudio;
@@ -249,13 +255,26 @@ class Ui {
 			let img;
 			if(this.level.health <= 0) {
 				img = this.loseImg;
+				var endscreenText;
+				if (Languages.language == "German"){
+					endscreenText = Ui.LoseGer;
+				} else {
+					endscreenText = Ui.LoseEng;
+				}
+
 			} else if(this.level.waveCounter >= this.level.waves.length) {
 				img = this.winImg;
+				if (Languages.language == "German"){
+					endscreenText = Ui.WinGer;
+				} else {
+					endscreenText = Ui.WinEng;
+				}
 			} else { console.log("Game has ended but neither condition for a Game Over is met."); }
 			this.gameOverOpacity += duration;
 			if(this.gameOverOpacity < 0) { ctx.globalAlpha = 0; }
 			else { ctx.globalAlpha = this.gameOverOpacity; }
 			ctx.drawImage(img, 0, 0);
+			this.endScreenTextDrawer(ctx, endscreenText);
 			let menuScale = 1;
 			if(hoverButton == 3) {
 				menuScale = 1.1;
@@ -264,8 +283,22 @@ class Ui {
 			ctx.globalAlpha = 1;
 		}
 	}
-	
-	// Philipp:	--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	endScreenTextDrawer(ctx, endscreenText) {
+		ctx.save();
+		ctx.shadowColor = '#000000';
+		ctx.shadowBlur = 30;
+		ctx.shadowOffsetX = 8;
+		ctx.shadowOffsetY = 8;
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		ctx.webkitTextFillStyle = '#ffffff';
+		ctx.font = '160px Pixel';
+		ctx.fillText(endscreenText, this.canvas.width / 2, 150);
+		ctx.restore();
+	}
+
+// Philipp:	--------------------------------------------------------------------------------------------------------------------------------------------------------------
 	// draw bubble
     static drawBubble(ctx, x, y, width, height) {
         const radius = 12;
