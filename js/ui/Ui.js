@@ -23,9 +23,6 @@ class Ui {
 	snowImg;
 	waveImg;
 	winImg; loseImg;
-	flagENImg;
-	flagGERImg;
-	flagOffset = 30; //px
 	
 	canvas;
 	controls;
@@ -37,6 +34,11 @@ class Ui {
 	static padding = 12;
 	static lineHeight = 18;
 	static upgradeArrow = null;
+
+	// flags for language control
+	static flagENImg;
+	static flagGERImg;
+	static flagOffset = 30; //px
 
 	// End screen localization
 	static WinGer = "Gewonnen!";
@@ -210,12 +212,9 @@ class Ui {
 				ctx.drawImage(this.mainMenuButton, this.canvas.width/2 - this.mainMenuButton.width*3*menuScale, Math.floor(this.canvas.height*2/3) - this.mainMenuButton.height*3*menuScale, this.mainMenuButton.width*6*menuScale, this.mainMenuButton.height*6*menuScale);
 
 				// draw flags for language control
-				ctx.save();
-				ctx.drawImage(this.flagENImg, this.canvas.width - (this.flagENImg.width + this.flagOffset), this.flagOffset);
-				ctx.drawImage(this.flagGERImg, this.canvas.width - (this.flagGERImg.width + this.flagOffset), this.flagOffset*3);
-				ctx.restore()
+				Ui.drawFlags(ctx, this.canvas, false);
 
-				} else {
+			} else {
 				if(this.darkened) {  this.darkened = false; }
 				ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				// Center Pause and Play button on the same axis
@@ -298,6 +297,18 @@ class Ui {
 			ctx.drawImage(this.mainMenuButton, this.canvas.width/2-(this.mainMenuButton.width/2)*4*menuScale, Math.floor(this.canvas.height*2/3)-(this.mainMenuButton.height/2)*4*menuScale, this.mainMenuButton.width*4*menuScale, this.mainMenuButton.height*4*menuScale);
 			ctx.globalAlpha = 1;
 		}
+	}
+
+	static drawFlags(ctx, canvas, isMainMenu) {
+		ctx.save();
+		if (isMainMenu) {ctx.clearRect(canvas.width - 150, 0, 150, 150);}
+		ctx.shadowColor = "#4b4242";
+		ctx.shadowBlur = 16;
+		ctx.shadowOffsetX = 3;
+		ctx.shadowOffsetY = 3;
+		ctx.drawImage(Ui.flagENImg, canvas.width - (Ui.flagENImg.width + Ui.flagOffset), Ui.flagOffset);
+		ctx.drawImage(Ui.flagGERImg, canvas.width - (Ui.flagGERImg.width + Ui.flagOffset), Ui.flagOffset * 3);
+		ctx.restore();
 	}
 
 	endScreenTextDrawer(ctx, endscreenText) {

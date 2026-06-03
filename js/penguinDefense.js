@@ -364,6 +364,11 @@ function setupShop(){
 	shop = new Shop(shopCv, state);
 }
 
+function setupFlags(){
+	Ui.flagENImg = document.getElementById("FLAG_EN");
+	Ui.flagGERImg = document.getElementById("FLAG_GER");
+}
+
 function setupAudio() {
 	menuAudio = document.getElementById("MENU_TRACK");
 	levelAudio = document.getElementById("LEVEL_TRACK");
@@ -427,6 +432,7 @@ function loadMainMenu() {
 	towerCv.getContext("2d").clearRect(0, 0, towerCv.width, towerCv.height);
 	enemyCv.getContext("2d").clearRect(0, 0, enemyCv.width, enemyCv.height);
 	mapCv.getContext("2d").clearRect(0, 0, mapCv.width, mapCv.height);
+	setupFlags();
 	menu.load();
 	levelAudio.pause();
 	menuAudio.currentTime = 0;
