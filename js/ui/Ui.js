@@ -23,6 +23,9 @@ class Ui {
 	snowImg;
 	waveImg;
 	winImg; loseImg;
+	flagENImg;
+	flagGERImg;
+	flagOffset = 30; //px
 	
 	canvas;
 	controls;
@@ -61,6 +64,8 @@ class Ui {
 		this.waveImg = document.getElementById("WAVE");
 		this.winImg = document.getElementById("WIN");
 		this.loseImg = document.getElementById("LOSE");
+		this.flagENImg = document.getElementById("FLAG_EN");
+		this.flagGERImg = document.getElementById("FLAG_GER");
 		this.canvas = document.getElementById("UI");
 		this.controls = controls;
 		window.addEventListener("click", this.clickButton.bind(this));
@@ -199,7 +204,14 @@ class Ui {
 					menuScale = 1.1;
 				}
 				ctx.drawImage(this.mainMenuButton, this.canvas.width/2 - this.mainMenuButton.width*3*menuScale, Math.floor(this.canvas.height*2/3) - this.mainMenuButton.height*3*menuScale, this.mainMenuButton.width*6*menuScale, this.mainMenuButton.height*6*menuScale);
-			} else {
+
+				// draw flags for language control
+				ctx.save();
+				ctx.drawImage(this.flagENImg, this.canvas.width - (this.flagENImg.width + this.flagOffset), this.flagOffset);
+				ctx.drawImage(this.flagGERImg, this.canvas.width - (this.flagGERImg.width + this.flagOffset), this.flagOffset*3);
+				ctx.restore()
+
+				} else {
 				if(this.darkened) {  this.darkened = false; }
 				ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 				// Center Pause and Play button on the same axis
