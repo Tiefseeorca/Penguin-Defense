@@ -180,6 +180,7 @@ class Menu {
 			}
 			ctx.clearRect(this.buttonsCv.width/2 - this.levelsButton.width*2*1.1, this.buttonsCv.height/2-(this.levelsButton.height*0.05), this.levelsButton.width*4.4, this.levelsButton.height*4.4);
 			ctx.drawImage(this.levelsButton, this.buttonsCv.width/2 - this.levelsButton.width*2*scale, this.buttonsCv.height/2-(this.levelsButton.height*(scale-1)/2), this.levelsButton.width*4*scale, this.levelsButton.height*4*scale);
+			Ui.drawFlags(ctx, this.backgroundCv);
 		}
 	}
 }
