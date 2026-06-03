@@ -1,5 +1,5 @@
 // Author:	Philipp Locher
-//			Reroll von Timo Lauterbach
+//			Reroll by Timo Lauterbach
 
 class Shop {
 	static SPACE = 22;
@@ -32,13 +32,13 @@ class Shop {
 		this.controls = controls;
 		Util.mousePos();
 		
-		// für Shake Effekt - Philipp
+		// shake-effect - Philipp
 		this.shakeIndex = -1;
 		this.shakeTime = 0;			// in Frames
 		this.shakeDuration = 12;	// in Frames
 		this.shakeStrength = 8;
 		
-//		this.canvas.addEventListener("mousemove", this.handleMouseMove.bind(this));		// .bind(this) schafft den Bezug auf die "Karte" anstatt auf das ganze Canvas
+//		this.canvas.addEventListener("mousemove", this.handleMouseMove.bind(this));
 		window.addEventListener("mousedown", this.handleMouseDown.bind(this));
 		this.setLanguageButtons();
 	}
@@ -46,8 +46,8 @@ class Shop {
 	setLanguageButtons() {
 		this.rerollImg = document.getElementById(Languages.button("Reroll"));
 	}
-	
-// Klick Event an Position erfassen und mit Index der geklickten Karte "verbinden"
+
+	// get click event at position nd connect to Index of clicked card
 	handleMouseDown(event){
 		if(this.isActive && !this.controls["paused"]) {
 			let canPos = this.canvas.getBoundingClientRect();
@@ -67,13 +67,13 @@ class Shop {
 		}
 	}
 	
-// Gibt die angeklickte Karte zurück
+	// return clicked card
 	getClickedCard() {
 		if(this.cards.length !== 3 || this.clickedIndex === -1) return null;
 		return this.cards[this.clickedIndex];
 	}
 	
-// Check ob unter Mausposition eine Karte ist und Index davon bestimmen
+	// check for card on mouse position and get index of card
 	checkHover(mouseX, mouseY){
 		
 		this.hoverIndex = -1;
@@ -85,7 +85,7 @@ class Shop {
 				this.hoverIndex = i;
 			}
 		}
-		// reroll von Timo ----------------------------------------------------------------------------------------
+		// reroll by Timo ----------------------------------------------------------------------------------------
 		let rerollCenterY = (this.canvas.height/2 + this.cards[0].img.height/2 + Shop.VPOS + 30) + this.rerollImg.height;
 		let rerollCenterX = this.canvas.width/2;
 		if((mouseX > (rerollCenterX - this.rerollImg.width)) && (mouseX < (rerollCenterX + this.rerollImg.width))
@@ -102,8 +102,8 @@ class Shop {
 	clear() {
 		this.pen.clearRect(0,0,this.canvas.width,this.canvas.height);		// Canvas leeren
 	}
-	
-	// Canvas "abdunkeln" und drawThreeCards() aufrufen
+
+	// dim canvas and call drawTreeCards()
 	display(){
 		if(this.cards.length !==3) return;
 		
@@ -120,7 +120,7 @@ class Shop {
 		this.drawThreeCards();
 	}
 	
-	// Card-Shake-Effekt - Philipp
+	// card-shake effect by Philipp
 	triggerCardShake(index) {
 		if(index === -1) return;
 		this.shakeCardIndex = index;
@@ -165,17 +165,17 @@ class Shop {
 			this.pen.shadowBlur = 14;
 			this.pen.shadowOffsetX = 6;
 			this.pen.shadowOffsetY = 6;
-			
-	// drei Karten aus dem Array setThreeCards zeichnen
+
+			// draw tree cards from setThreeCards array
 			let x = this.posX + i * (Shop.CARD_W + Shop.SPACE);
 	
-	// Shake Effekt - Philipp
+			// shake effect by Philipp
 			let cardShakeX = 0;
 			if(i === this.shakeCardIndex) {
 				cardShakeX = shakeOffsetX;
 			}
 			
-		// Hover Effekt		
+			// hover effect by Philipp
 			let scale = 1.0;
 			if(i === this.hoverIndex){			
 				scale = 1.08;
@@ -185,11 +185,11 @@ class Shop {
 			let h = Shop.CARD_H * scale;
 			let hT = h + Shop.VPOS + 8;
 			
-		// Textgröße speichern	
+			// store text size
 			let textW = 0;
 			let textH = 0;
 		
-		// Karte zentrieren	
+			// center cards
 			let offsetX = (w - Shop.CARD_W) / 2;		
 			let offsetY = (h - Shop.CARD_H) / 2;
 			
@@ -197,15 +197,15 @@ class Shop {
 			if(!card || !card.img) continue;
 			this.pen.drawImage(card.img, x - offsetX + cardShakeX, this.posY - offsetY, w, h);
 			
-		// Überschrift auf Karte schreiben	
+			// draw headline on card
 		
-		// Stats auf Karte schreiben	
+			// draw stats on card
 			if(card.type == 'tower'){ // Tower Karten
 				const cardLeft = x - offsetX + cardShakeX;
 				const cardTop = this.posY - offsetY;
 				const cardBottom = cardTop + h;
 				
-				// Kosten in Karte zeichnen
+				// draw cost on card
 				this.pen.save();
 				this.pen.shadowColor = 'rgba( 0, 0, 0, 1)';
 				this.pen.shadowBlur = 2	;			
@@ -235,7 +235,7 @@ class Shop {
 				textH = this.pen.measureText('Lorem ipsum').fontBoundingBoxAscent;
 				this.pen.fillText(texts[2], cardLeft +((w - textW)/2), cardBottom -58);
 				
-			} else {	// Upgrade Karten
+			} else {	// upgrade card
 				const cardLeft = x - offsetX + cardShakeX;
 				const cardTop = this.posY - offsetY;
 				const cardBottom = cardTop + h;
@@ -245,7 +245,7 @@ class Shop {
 				this.pen.font = '18px Pixel';
 				this.pen.fillText(texts[0], cardLeft + 15,cardTop + 5);
 				
-				// Kosten in Karte zeichnen
+				// draw cost on card
 				this.pen.save();
 				this.pen.shadowColor = 'rgba( 0, 0, 0, 1)';
 				this.pen.shadowBlur = 2;				
@@ -275,7 +275,8 @@ class Shop {
 				this.pen.fillText(texts[2] + ((card.data.mode=="%")?"%":""), cardLeft +((w - textW)/2), cardBottom - 56);
 			}
 			this.pen.restore();
-			
+
+			// draw tooltip bubble while hover
 			if(i === this.hoverIndex){
 				const bubbleX = x + 128;
 				const bubbleY = this.posY - 15;

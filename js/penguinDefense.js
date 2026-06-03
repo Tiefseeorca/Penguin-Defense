@@ -283,10 +283,12 @@ function switchLanguage() {
 
 function control(evt) {
 	switch(evt.keyCode) {
-		//case 171: level.waveCounter++; level.money+=75; break;	// +	DEBUG: skip wave
-		case 76: switchLanguage(); break;	// L 	DEBUG: switch between Languages
+		//case 171: level.waveCounter++; level.money+=750; break;	// +	DEBUG: skip wave
+		case 76: level.health = 0; break;	// L DEBUG for losescreen
 		case 27: state["paused"] = !state["paused"]; break;	// Esc
-		case 32:	// Space
+		/*case 32: state["inShop"] = true;
+				 shop.isActive = true;
+				 break;	// Space DEBUG for winscreen*/
 		case 83:	// S
 			if(state["inShop"]) { level.startWave(); }
 			else { state["speedup"] = state["speedup"]%3 + 1; break; }
@@ -298,6 +300,8 @@ function control(evt) {
 				shop.display();
 				shop.isActive = true;
 			}
+		case 49: Languages.language = "English"; break;	// 1 English
+		case 50: Languages.language = "German"; break;	// 2 German
 			break;
 		default: console.log("Key " + evt.keyCode + " is not mapped to any action.");
 	}

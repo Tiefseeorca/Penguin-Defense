@@ -3,7 +3,7 @@ class TowerCard extends Card {
 	constructor(id, towerClass, img, rate=1) {
 		super(
 			id, 
-			'tower', 		// ersetzen durch instanceof TowerCard im nächsten Schritt
+			'tower',
 			towerClass.NAME, 
 			{
 					description: towerClass.DESC, 
