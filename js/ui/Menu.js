@@ -56,24 +56,28 @@ class Menu {
 				&& mouseY > levelsButtonTop && mouseY < (levelsButtonTop + this.levelsButton.height*4)) {
 					return 1;
 			}
-		} else {
-			let playButtonLeft = this.buttonsCv.width/2 - this.playButton.width*2;
-			let playButtonTop = this.buttonsCv.height*2/3;
+
+			// add klick behaviour to flags
 			let FlagLeft = this.buttonsCv.width - Ui.flagOffset - Ui.flagENImg.width;
 			let engFlagTop = Ui.flagOffset;
 			let gerFlagTop = Ui.flagENImg.height + (2* Ui.flagOffset);
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg.width
+				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg.height)) {
+				return 6;
+			}
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg.width
+				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg.height)) {
+				return 7;
+			}
+
+		} else {
+			let playButtonLeft = this.buttonsCv.width/2 - this.playButton.width*2;
+			let playButtonTop = this.buttonsCv.height*2/3;
 			if(mouseX > playButtonLeft && mouseX < (playButtonLeft + this.playButton.width*4)
 				&& mouseY > playButtonTop && mouseY < (playButtonTop + this.playButton.height*4)) {
 					return 5;
 			}
-			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg.width
-				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg.height)) {
-					return 6;
-			}
-			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg.width
-				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg.height)) {
-					return 7;
-			}
+
 			let scrollRightButtonLeft = this.buttonsCv.width/2 + Level.MAPS[this.selectedLevel][0].length*Level.TILE_SIZE/2 + this.scrollRightButton.width;
 			let scrollRightButtonTop = Math.floor(this.buttonsCv.height/3) - (this.scrollRightButton.height/2)*4;
 			if(mouseX > scrollRightButtonLeft && mouseX < (scrollRightButtonLeft + this.scrollRightButton.width*4)
@@ -107,6 +111,8 @@ class Menu {
 				break;
 			case 3: this.selectedLevel++; this.levelDrawn = false; break; // Scroll Right button was clicked
 			case 4: this.selectedLevel--; this.levelDrawn = false; break; // Scroll Left button was clicked
+			case 6: Languages.language = "English"; console.log(Languages.language); break;
+			case 7: Languages.language = "German"; console.log(Languages.language); break;
 			case 5:	// Play Level Button was clicked. TODO: Loading Screen?
 				this.active = false;
 				this.inLevelSelect = false;
@@ -115,8 +121,6 @@ class Menu {
 				//this.backgroundCv.getContext("2d").clearRect(0, 0, this.backgroundCv.width, this.backgroundCv.height);
 				//this.buttonsCv.getContext("2d").clearRect(0, 0, this.buttonsCv.width, this.buttonsCv.height);
 				break;
-			case 6: Languages.language = "English"; break;
-			case 7: Languages.language = "German"; break;
 			default: break;	// No button was clicked
 		}
 	}
