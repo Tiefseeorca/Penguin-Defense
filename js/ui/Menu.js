@@ -192,7 +192,7 @@ class Menu {
 		} else {
 			// Draw Level select button
 			let scale = 1;
-			if(this.mouseOverButton) {
+			if(this.mouseOverButton == 1) {
 				scale = 1.1;
 			}
 			ctx.clearRect(this.buttonsCv.width/2 - this.levelsButton.width*2*1.1, this.buttonsCv.height/2-(this.levelsButton.height*0.05), this.levelsButton.width*4.4, this.levelsButton.height*4.4);
