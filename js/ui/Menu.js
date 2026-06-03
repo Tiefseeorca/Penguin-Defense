@@ -59,9 +59,20 @@ class Menu {
 		} else {
 			let playButtonLeft = this.buttonsCv.width/2 - this.playButton.width*2;
 			let playButtonTop = this.buttonsCv.height*2/3;
+			let FlagLeft = this.buttonsCv.width - Ui.flagOffset - Ui.flagENImg.width;
+			let engFlagTop = Ui.flagOffset;
+			let gerFlagTop = Ui.flagENImg.height + (2* Ui.flagOffset);
 			if(mouseX > playButtonLeft && mouseX < (playButtonLeft + this.playButton.width*4)
 				&& mouseY > playButtonTop && mouseY < (playButtonTop + this.playButton.height*4)) {
 					return 5;
+			}
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg.width
+				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg.height)) {
+					return 6;
+			}
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg.width
+				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg.height)) {
+					return 7;
 			}
 			let scrollRightButtonLeft = this.buttonsCv.width/2 + Level.MAPS[this.selectedLevel][0].length*Level.TILE_SIZE/2 + this.scrollRightButton.width;
 			let scrollRightButtonTop = Math.floor(this.buttonsCv.height/3) - (this.scrollRightButton.height/2)*4;
@@ -104,6 +115,8 @@ class Menu {
 				//this.backgroundCv.getContext("2d").clearRect(0, 0, this.backgroundCv.width, this.backgroundCv.height);
 				//this.buttonsCv.getContext("2d").clearRect(0, 0, this.buttonsCv.width, this.buttonsCv.height);
 				break;
+			case 6: Languages.language = "English"; break;
+			case 7: Languages.language = "German"; break;
 			default: break;	// No button was clicked
 		}
 	}
@@ -182,7 +195,7 @@ class Menu {
 			ctx.drawImage(this.levelsButton, this.buttonsCv.width/2 - this.levelsButton.width*2*scale, this.buttonsCv.height/2-(this.levelsButton.height*(scale-1)/2), this.levelsButton.width*4*scale, this.levelsButton.height*4*scale);
 
 			// draw flags for language controller
-			Ui.drawFlags(ctx, this.backgroundCv, true);
+			Ui.drawFlags(ctx, this.buttonsCv, true);
 		}
 	}
 }
