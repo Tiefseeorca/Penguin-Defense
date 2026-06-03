@@ -40,9 +40,11 @@ class Shop {
 		
 //		this.canvas.addEventListener("mousemove", this.handleMouseMove.bind(this));
 		window.addEventListener("mousedown", this.handleMouseDown.bind(this));
-		// DEBUG
-		this.rerollImg = document.getElementById("REROLL");
-		// DEBUG END
+		this.setLanguageButtons();
+	}
+	
+	setLanguageButtons() {
+		this.rerollImg = document.getElementById(Languages.button("Reroll"));
 	}
 
 	// get click event at position nd connect to Index of clicked card

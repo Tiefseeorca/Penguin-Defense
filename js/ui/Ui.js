@@ -57,8 +57,7 @@ class Ui {
 		this.loadFadeOut = document.getElementById("LOAD_FADE_OUT");
 		this.pauseButton = document.getElementById("PAUSE_BUTTON");
 		this.playButton = document.getElementById("PLAY_BUTTON");
-		this.continueButton = document.getElementById("CONTINUE_BUTTON");
-		this.mainMenuButton = document.getElementById("MAIN_MENU_BUTTON");
+		this.setLanguageButtons();
 		this.healthImg = document.getElementById("HEALTH");
 		this.snowImg = document.getElementById("SNOW");
 		this.waveImg = document.getElementById("WAVE");
@@ -69,6 +68,11 @@ class Ui {
 		this.canvas = document.getElementById("UI");
 		this.controls = controls;
 		window.addEventListener("click", this.clickButton.bind(this));
+	}
+	
+	setLanguageButtons() {
+		this.continueButton = document.getElementById(Languages.button("Continue"));
+		this.mainMenuButton = document.getElementById(Languages.button("MainMenu"));
 	}
 	
 	animate(duration) {
@@ -394,13 +398,18 @@ class Ui {
 	
 	// draw text in bubbles
 	static drawBubbleText(ctx, text, bubbleX, bubbleY, bubbleWidth, bubbleHeight) {
+		const maxTextWidth = bubbleWidth - Ui.padding * 2;
+		
+		const lines = Ui.wrapText(ctx, text, maxTextWidth);
+		
+		Ui.drawBubbleLines(ctx, lines, bubbleX, bubbleY, bubbleHeight);
+	}
+	
+	static drawBubbleLines(ctx, lines, bubbleX, bubbleY, bubbleHeight) {
 		const topY = bubbleY - bubbleHeight;
 		
 		const textX = bubbleX + Ui.padding;
 		const textY = topY + Ui.padding;
-		const maxTextWidth = bubbleWidth - Ui.padding * 2;
-		
-		const lines = Ui.wrapText(ctx, text, maxTextWidth);
 		
 		ctx.save();
 		ctx.textAlign = 'left';
@@ -420,7 +429,11 @@ class Ui {
 		
 		return Ui.padding * 2 + lines.length * Ui.lineHeight;
 	}
-
+	
+	static getBubbleHeightFromLines(lines) {
+		return Ui.padding * 2 + lines.length * Ui.lineHeight;
+	}
+	
 	// get tower position for upgrade marker position
 	static getTowerAtPosition(x, y) {
 		for(let tower of towers){

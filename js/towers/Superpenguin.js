@@ -12,7 +12,7 @@ class Superpenguin extends Tower {
 		"English":	"Shoots laser projectiles with high fire rate"
 	};
 	static get DESC() {
-		let desc = Superpenguin._DESCS[language];
+		let desc = Superpenguin._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -21,7 +21,7 @@ class Superpenguin extends Tower {
 		"English":	"Superpenguin"
 	}
 	static get NAME() {
-		let name = Superpenguin._NAMES[language];
+		let name = Superpenguin._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

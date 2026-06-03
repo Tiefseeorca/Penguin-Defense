@@ -12,7 +12,7 @@ class Penguin extends Tower {
 		"English":	"Throws simple snowballs at the enemies. Reliable and good for the start."
 	};
 	static get DESC() {
-		let desc = Penguin._DESCS[language];
+		let desc = Penguin._DESCS[Languages.language];
 		if(desc == undefined) { return Tower.DEFAULT_DESC; }
 		return desc;
 	}
@@ -21,7 +21,7 @@ class Penguin extends Tower {
 		"English":	"Snowball Thrower"
 	}
 	static get NAME() {
-		let name = Penguin._NAMES[language];
+		let name = Penguin._NAMES[Languages.language];
 		if(name == undefined) { return Tower.DEFAULT_NAME; }
 		return name;
 	}

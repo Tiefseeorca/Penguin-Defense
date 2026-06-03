@@ -15,7 +15,6 @@ var path;
 var menu;
 var ui;
 var menuAudio, levelAudio;
-var language = "English";
 
 var mapCv, towerCv, enemyCv, shopCv, uiCv;	// enemy Canvas gets used to display projectiles as well
 const CV_WIDTH = 1280;
@@ -273,6 +272,13 @@ function closeShop() {
 	shop.isActive = false;
 	state["inShop"] = false;
 	shop.rerollCost = 10;
+}
+
+function switchLanguage() {
+	Languages.language = Languages.language == "German" ? "English" : "German";
+	menu.setLanguageButtons();
+	ui.setLanguageButtons();
+	shop.setLanguageButtons();
 }
 
 function control(evt) {
