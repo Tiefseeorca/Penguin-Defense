@@ -199,7 +199,11 @@ class Menu {
 			ctx.drawImage(this.levelsButton, this.buttonsCv.width/2 - this.levelsButton.width*2*scale, this.buttonsCv.height/2-(this.levelsButton.height*(scale-1)/2), this.levelsButton.width*4*scale, this.levelsButton.height*4*scale);
 
 			// draw flags for language controller
-			Ui.drawFlags(ctx, this.buttonsCv, true);
+			let hoveredFlag = null;
+			if (this.mouseOverButton == 6 || this.mouseOverButton == 7) {
+				hoveredFlag = this.mouseOverButton;
+			}
+			Ui.drawFlags(ctx, this.buttonsCv, true, hoveredFlag);
 		}
 	}
 }

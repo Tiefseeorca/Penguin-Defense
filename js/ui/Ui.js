@@ -299,15 +299,31 @@ class Ui {
 		}
 	}
 
-	static drawFlags(ctx, canvas, isMainMenu) {
+	static drawFlags(ctx, canvas, isMainMenu, hoveredFlag) {
 		ctx.save();
-		if (isMainMenu) {ctx.clearRect(canvas.width - 150, 0, 150, 150);}
+		if (isMainMenu) {ctx.clearRect(canvas.width - 150, 0, 150, 180);}
+
 		ctx.shadowColor = "#4b4242";
 		ctx.shadowBlur = 16;
 		ctx.shadowOffsetX = 3;
 		ctx.shadowOffsetY = 3;
-		ctx.drawImage(Ui.flagENImg, canvas.width - (Ui.flagENImg.width + Ui.flagOffset), Ui.flagOffset);
-		ctx.drawImage(Ui.flagGERImg, canvas.width - (Ui.flagGERImg.width + Ui.flagOffset), Ui.flagOffset * 3);
+
+		let scaleEN = 1;
+		if (hoveredFlag == 6){
+			scaleEN = 1.05
+			ctx.drawImage(Ui.flagENImg, canvas.width - ((Ui.flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, Ui.flagENImg.width * scaleEN, Ui.flagENImg.height * scaleEN);
+		} else {
+			ctx.drawImage(Ui.flagENImg, canvas.width - ((Ui.flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, Ui.flagENImg.width * scaleEN, Ui.flagENImg.height * scaleEN);
+		}
+
+		let scaleGER = 1;
+		if (hoveredFlag == 7){
+			scaleGER = 1.05;
+			ctx.drawImage(Ui.flagGERImg, canvas.width - ((Ui.flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, Ui.flagGERImg.width * scaleGER, Ui.flagGERImg.height * scaleGER);
+		} else {
+			ctx.drawImage(Ui.flagGERImg, canvas.width - ((Ui.flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, Ui.flagGERImg.width * scaleGER, Ui.flagGERImg.height * scaleGER);
+		}
+
 		ctx.restore();
 	}
 
