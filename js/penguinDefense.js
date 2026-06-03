@@ -8,8 +8,8 @@ var towers = [];
 var enemies = [];
 var projectiles = [];
 
-var shop;		// Philipp für neues Shop-UI
-var deck;		// Philipp neues Deck für Durchlauf
+var shop;		// Philipp new shop UI
+var deck;		// Philipp new deck for run
 var level;
 var path;
 var menu;
@@ -283,8 +283,8 @@ function switchLanguage() {
 
 function control(evt) {
 	switch(evt.keyCode) {
-		//case 171: level.waveCounter++; level.money+=750; break;	// +	DEBUG: skip wave
-		case 76: level.health = 0; break;	// L DEBUG for losescreen
+		//case 171: level.waveCounter++; level.money+=50; break;	// +	DEBUG: skip wave
+		//case 76: level.health = 0; break;	// L DEBUG for losescreen
 		case 27: state["paused"] = !state["paused"]; break;	// Esc
 		/*case 32: state["inShop"] = true;
 				 shop.isActive = true;
@@ -300,8 +300,6 @@ function control(evt) {
 				shop.display();
 				shop.isActive = true;
 			}
-		case 49: Languages.language = "English"; break;	// 1 English
-		case 50: Languages.language = "German"; break;	// 2 German
 			break;
 		default: console.log("Key " + evt.keyCode + " is not mapped to any action.");
 	}
@@ -317,7 +315,7 @@ function setupCanvas() {
 	mapCv = document.getElementById("MAP");
 	towerCv = document.getElementById("TOWERS");
 	enemyCv = document.getElementById("ENEMIES");
-	shopCv = document.getElementById("SHOP");		//Philipp - Integration neues Canvas für Shop-UI mit Karten
+	shopCv = document.getElementById("SHOP");		//Philipp - integrate new shop UI canvas including cards
 	uiCv = document.getElementById("UI");
 	mapCv.width = CV_WIDTH;
 	mapCv.height = CV_HEIGHT;
@@ -325,7 +323,7 @@ function setupCanvas() {
 	towerCv.height = CV_HEIGHT;
 	enemyCv.width = CV_WIDTH;
 	enemyCv.height = CV_HEIGHT;
-	shopCv.width = CVUI_WIDTH;					//Philipp - UI Canvas ohne nachträgliches Scaling
+	shopCv.width = CVUI_WIDTH;					//Philipp - full scale UI canbas
 	shopCv.height = CVUI_HEIGHT;
 	uiCv.width = CVUI_WIDTH;
 	uiCv.height = CVUI_HEIGHT;
@@ -365,8 +363,10 @@ function setupShop(){
 }
 
 function setupFlags(){
-	Ui.flagENImg = document.getElementById("FLAG_EN");
-	Ui.flagGERImg = document.getElementById("FLAG_GER");
+	Ui.flagENImg_inactive = document.getElementById("FLAG_EN");
+	Ui.flagENImg_active = document.getElementById("FLAG_EN_ACTIVE");
+	Ui.flagGERImg_inactive = document.getElementById("FLAG_GER");
+	Ui.flagGERImg_active = document.getElementById("FLAG_GER_ACTIVE");
 }
 
 function setupAudio() {

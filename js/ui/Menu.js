@@ -58,15 +58,15 @@ class Menu {
 			}
 
 			// add klick behaviour to flags
-			let FlagLeft = this.buttonsCv.width - Ui.flagOffset - Ui.flagENImg.width;
+			let FlagLeft = this.buttonsCv.width - Ui.flagOffset - Ui.flagENImg_inactive.width;
 			let engFlagTop = Ui.flagOffset;
-			let gerFlagTop = Ui.flagENImg.height + (2* Ui.flagOffset);
-			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg.width
-				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg.height)) {
+			let gerFlagTop = Ui.flagENImg_inactive.height + (2* Ui.flagOffset);
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg_inactive.width
+				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg_inactive.height)) {
 				return 6;
 			}
-			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg.width
-				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg.height)) {
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg_inactive.width
+				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg_inactive.height)) {
 				return 7;
 			}
 
@@ -111,8 +111,8 @@ class Menu {
 				break;
 			case 3: this.selectedLevel++; this.levelDrawn = false; break; // Scroll Right button was clicked
 			case 4: this.selectedLevel--; this.levelDrawn = false; break; // Scroll Left button was clicked
-			case 6: Languages.language = "English"; console.log(Languages.language); break;
-			case 7: Languages.language = "German"; console.log(Languages.language); break;
+			case 6: Languages.language = "English"; break;
+			case 7: Languages.language = "German"; break;
 			case 5:	// Play Level Button was clicked. TODO: Loading Screen?
 				this.active = false;
 				this.inLevelSelect = false;

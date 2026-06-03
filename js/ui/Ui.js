@@ -36,8 +36,10 @@ class Ui {
 	static upgradeArrow = null;
 
 	// flags for language control
-	static flagENImg;
-	static flagGERImg;
+	static flagENImg_inactive;
+	static flagENImg_active;
+	static flagGERImg_inactive;
+	static flagGERImg_active;
 	static flagOffset = 30; //px
 
 	// End screen localization
@@ -131,6 +133,20 @@ class Ui {
 				&& mouseY > menuButtonTop && mouseY < menuButtonTop + this.mainMenuButton.height*6) {
 					return 3;
 			}
+
+			// add klick behaviour to flags
+			let FlagLeft = this.canvas.width - Ui.flagOffset - Ui.flagENImg_inactive.width;
+			let engFlagTop = Ui.flagOffset;
+			let gerFlagTop = Ui.flagENImg_inactive.height + (2* Ui.flagOffset);
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg_inactive.width
+				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg_inactive.height)) {
+				return 6;
+			}
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg_inactive.width
+				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg_inactive.height)) {
+				return 7;
+			}
+
 		} else if(this.controls["currentScene"] == "level" && !this.controls["paused"]) {
 			let pauseButtonLeft = this.canvas.width - this.pauseButton.width*2.5;
 			let pauseButtonTop = this.pauseButton.height/2;
@@ -176,6 +192,8 @@ class Ui {
 					this.gameOverOpacity = -2;
 					this.doLoadingScreen("mainMenu");
 					break;
+				case 6: Languages.language = "English"; break;
+				case 7: Languages.language = "German"; break;
 				default: break;	// Nothing was clicked
 			}
 		}
@@ -212,7 +230,11 @@ class Ui {
 				ctx.drawImage(this.mainMenuButton, this.canvas.width/2 - this.mainMenuButton.width*3*menuScale, Math.floor(this.canvas.height*2/3) - this.mainMenuButton.height*3*menuScale, this.mainMenuButton.width*6*menuScale, this.mainMenuButton.height*6*menuScale);
 
 				// draw flags for language control
-				Ui.drawFlags(ctx, this.canvas, false);
+				let hoveredFlag = null;
+				if (this.mouseOverButton == 6 || this.mouseOverButton == 7) {
+					hoveredFlag = this.mouseOverButton;
+				}
+				Ui.drawFlags(ctx, this.canvas, false, hoveredFlag);
 
 			} else {
 				if(this.darkened) {  this.darkened = false; }
@@ -300,6 +322,7 @@ class Ui {
 	}
 
 	static drawFlags(ctx, canvas, isMainMenu, hoveredFlag) {
+
 		ctx.save();
 		if (isMainMenu) {ctx.clearRect(canvas.width - 150, 0, 150, 180);}
 
@@ -308,20 +331,33 @@ class Ui {
 		ctx.shadowOffsetX = 3;
 		ctx.shadowOffsetY = 3;
 
+		// english flag
 		let scaleEN = 1;
-		if (hoveredFlag == 6){
-			scaleEN = 1.05
-			ctx.drawImage(Ui.flagENImg, canvas.width - ((Ui.flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, Ui.flagENImg.width * scaleEN, Ui.flagENImg.height * scaleEN);
-		} else {
-			ctx.drawImage(Ui.flagENImg, canvas.width - ((Ui.flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, Ui.flagENImg.width * scaleEN, Ui.flagENImg.height * scaleEN);
+
+		let flagENImg = Ui.flagENImg_inactive;	// standard
+		if (Languages.language == "English"){
+			flagENImg = Ui.flagENImg_active;
 		}
 
+		if (hoveredFlag == 6){
+			scaleEN = 1.05
+			ctx.drawImage(flagENImg, canvas.width - ((flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, flagENImg.width * scaleEN, flagENImg.height * scaleEN);
+		} else {
+			ctx.drawImage(flagENImg, canvas.width - ((flagENImg.width + Ui.flagOffset) * scaleEN), Ui.flagOffset * scaleEN, flagENImg.width * scaleEN, flagENImg.height * scaleEN);
+		}
+
+		// german flag
 		let scaleGER = 1;
+
+		let flagGERImg = Ui.flagGERImg_inactive;	// standard
+		if (Languages.language == "German"){
+			flagGERImg = Ui.flagGERImg_active;
+		}
 		if (hoveredFlag == 7){
 			scaleGER = 1.05;
-			ctx.drawImage(Ui.flagGERImg, canvas.width - ((Ui.flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, Ui.flagGERImg.width * scaleGER, Ui.flagGERImg.height * scaleGER);
+			ctx.drawImage(flagGERImg, canvas.width - ((flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, flagGERImg.width * scaleGER, flagGERImg.height * scaleGER);
 		} else {
-			ctx.drawImage(Ui.flagGERImg, canvas.width - ((Ui.flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, Ui.flagGERImg.width * scaleGER, Ui.flagGERImg.height * scaleGER);
+			ctx.drawImage(flagGERImg, canvas.width - ((flagGERImg.width + Ui.flagOffset) * scaleGER), Ui.flagOffset * 3 * scaleGER, flagGERImg.width * scaleGER, flagGERImg.height * scaleGER);
 		}
 
 		ctx.restore();
