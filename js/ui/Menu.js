@@ -56,6 +56,20 @@ class Menu {
 				&& mouseY > levelsButtonTop && mouseY < (levelsButtonTop + this.levelsButton.height*4)) {
 					return 1;
 			}
+
+			// add klick behaviour to flags
+			let FlagLeft = this.buttonsCv.width - Ui.flagOffset - Ui.flagENImg_inactive.width;
+			let engFlagTop = Ui.flagOffset;
+			let gerFlagTop = Ui.flagENImg_inactive.height + (2* Ui.flagOffset);
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagENImg_inactive.width
+				&& mouseY > engFlagTop && mouseY < (engFlagTop + Ui.flagENImg_inactive.height)) {
+				return 6;
+			}
+			if(mouseX > FlagLeft && mouseX < FlagLeft + Ui.flagGERImg_inactive.width
+				&& mouseY > gerFlagTop && mouseY < (gerFlagTop + Ui.flagGERImg_inactive.height)) {
+				return 7;
+			}
+
 		} else {
 			let playButtonLeft = this.buttonsCv.width/2 - this.playButton.width*2;
 			let playButtonTop = this.buttonsCv.height*2/3;
@@ -63,6 +77,7 @@ class Menu {
 				&& mouseY > playButtonTop && mouseY < (playButtonTop + this.playButton.height*4)) {
 					return 5;
 			}
+
 			let scrollRightButtonLeft = this.buttonsCv.width/2 + Level.MAPS[this.selectedLevel][0].length*Level.TILE_SIZE/2 + this.scrollRightButton.width;
 			let scrollRightButtonTop = Math.floor(this.buttonsCv.height/3) - (this.scrollRightButton.height/2)*4;
 			if(mouseX > scrollRightButtonLeft && mouseX < (scrollRightButtonLeft + this.scrollRightButton.width*4)
@@ -96,6 +111,8 @@ class Menu {
 				break;
 			case 3: this.selectedLevel++; this.levelDrawn = false; break; // Scroll Right button was clicked
 			case 4: this.selectedLevel--; this.levelDrawn = false; break; // Scroll Left button was clicked
+			case 6: Languages.language = "English"; break;
+			case 7: Languages.language = "German"; break;
 			case 5:	// Play Level Button was clicked. TODO: Loading Screen?
 				this.active = false;
 				this.inLevelSelect = false;
@@ -175,11 +192,18 @@ class Menu {
 		} else {
 			// Draw Level select button
 			let scale = 1;
-			if(this.mouseOverButton) {
+			if(this.mouseOverButton == 1) {
 				scale = 1.1;
 			}
 			ctx.clearRect(this.buttonsCv.width/2 - this.levelsButton.width*2*1.1, this.buttonsCv.height/2-(this.levelsButton.height*0.05), this.levelsButton.width*4.4, this.levelsButton.height*4.4);
 			ctx.drawImage(this.levelsButton, this.buttonsCv.width/2 - this.levelsButton.width*2*scale, this.buttonsCv.height/2-(this.levelsButton.height*(scale-1)/2), this.levelsButton.width*4*scale, this.levelsButton.height*4*scale);
+
+			// draw flags for language controller
+			let hoveredFlag = null;
+			if (this.mouseOverButton == 6 || this.mouseOverButton == 7) {
+				hoveredFlag = this.mouseOverButton;
+			}
+			Ui.drawFlags(ctx, this.buttonsCv, true, hoveredFlag);
 		}
 	}
 }
