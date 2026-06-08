@@ -4,9 +4,9 @@ class TowerCard extends Card {
 		super(
 			id, 
 			'tower',
-			towerClass.NAME, 
+			towerClass.NAME,
 			{
-					description: towerClass.DESC, 
+					description: towerClass.DESC,
 					towerType: towerClass, 
 					range: towerClass.RANGE, 
 					attackSpeed: towerClass.ATTACK_SPEED,

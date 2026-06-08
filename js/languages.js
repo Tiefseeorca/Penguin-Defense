@@ -8,7 +8,9 @@ class Languages {
 		Range:		Symbol("Range"),
 		AtkSpeed:	Symbol("AtkSpeed"),
 		StatName:	Symbol("StatName"),
-		Amount:		Symbol("Amount")
+		Amount:		Symbol("Amount"),
+		CardName:	Symbol("CardName"),
+		Tooltip:	Symbol("Tooltip")
 	}
 	
 	static CardTexts = {
@@ -55,6 +57,8 @@ class Languages {
 	
 	static getCardDescByLanguage(card) {
 		let dict = Languages.CardTexts[Languages.language];
+		let cardName = card.NAME;
+		let tooltip = card.DESC;
 		let texts = [];
 		if(card.type == "tower") {
 			texts.push(this._assembleSingleText(card, dict, "Tower"));
