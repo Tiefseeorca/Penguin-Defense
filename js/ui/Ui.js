@@ -192,8 +192,14 @@ class Ui {
 					this.gameOverOpacity = -2;
 					this.doLoadingScreen("mainMenu");
 					break;
-				case 6: // English
-				case 7: switchLanguage(); break;	// German
+				case 6:
+					if(Languages.language != "English")
+						switchLanguage();
+					break;
+				case 7: 
+					if(Languages.language != "German")
+						switchLanguage();
+					break;
 				default: break;	// Nothing was clicked
 			}
 		}
