@@ -1,6 +1,6 @@
 // Author: Timo Lauterbach
 class Audiohandler {
-	static MAX_SOUND_EFFECTS = 10;
+	static MAX_SOUND_EFFECTS = 18;
 	static sounds = [];
 	
 	static requestAudio(audio) {

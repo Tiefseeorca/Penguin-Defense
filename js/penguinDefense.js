@@ -289,7 +289,12 @@ function control(evt) {
 		/*case 32: state["inShop"] = true;
 				 shop.isActive = true;
 				 break;	// Space DEBUG for winscreen*/
+<<<<<<< Updated upstream
 		case 83:	// S
+=======
+		//case 32: showShop(); break;	// DEBUG: Reroll Shop
+		/*case 83:	// S
+>>>>>>> Stashed changes
 			if(state["inShop"]) { level.startWave(); }
 			else { state["speedup"] = state["speedup"]%3 + 1; break; }
 		case 88:	// X
