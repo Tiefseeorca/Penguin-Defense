@@ -9,7 +9,7 @@ class PineconeGunner extends Tower {
 	static COST = 150;
 	static _DESCS = {
 		"German":	"Wirft Tannenzapfen, die durch mehrere Gegner hindurchfliegen. Trifft viele Feinde auf einmal und ist stark gegen große Gruppen.",
-		"English":	"Throws pine cones that pierce enemies. Hits multiple enemies at once and is strong against bigger groups."
+		"English":	"Shoots pine cones that pierce enemies. Hits multiple enemies at once and is strong against bigger groups."
 	};
 	static get DESC() {
 		let desc = PineconeGunner._DESCS[Languages.language];
