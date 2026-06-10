@@ -13,8 +13,9 @@ class Tower {
 	isPlaced = false;
 	hitboxRadius = 0;
 	validTiles = ["G"];
-	throwAudio1;
-	throwAudio2;
+	throwAudio1Src;
+	throwAudio2Src;
+	throwAudioVolume;
 	
 	// Setting default values and shared variables for all instances
 	static DEFAULT_IMG_ID = "PENGUIN_SPRITE";
@@ -37,12 +38,12 @@ class Tower {
 		this.Projectile = Projectile;
 		this.hitboxRadius = hitboxRadius;
 		this.validTiles = validTiles;
-		this.throwAudio1 = document.createElement("audio");
-		this.throwAudio1.src = Tower.throwAudio1.src;
-		this.throwAudio1.volume = Tower.throwAudio1.volume;
-		this.throwAudio2 = document.createElement("audio");
-		this.throwAudio2.src = Tower.throwAudio2.src;
-		this.throwAudio2.volume = Tower.throwAudio2.volume;
+		// this.throwAudio1 = document.createElement("audio");	NOT NEEDED ANY LONGER
+		this.throwAudio1Src = Tower.throwAudio1.src;
+		// this.throwAudio1.volume = Tower.throwAudio1.volume;
+		// this.throwAudio2 = document.createElement("audio");	NOT NEEDED ANY LONGER
+		this.throwAudio2Src = Tower.throwAudio2.src;
+		this.throwAudioVolume = Tower.throwAudio1.volume;
 	}
 	
 	display() {
@@ -115,13 +116,8 @@ class Tower {
 	}
 	
 	playThrowSound() {
-		if(!(this.throwAudio1.paused && this.throwAudio2.paused)) { return; }
-		let tmp = Math.random();
-		if(tmp < 0.5) {
-			Audiohandler.requestAudio(this.throwAudio1);
-		} else {
-			Audiohandler.requestAudio(this.throwAudio2);
-		}
+		let src = (Math.random() < 0.5) ? this.throwAudio1Src : this.throwAudio2Src;
+		Audiohandler.play(src, this.throwAudioVolume);
 	}
 	
 	// create a new projectile going into the direction the tower is facing if the attack cooldown has ended
@@ -209,9 +205,9 @@ class Tower {
 	// Philipp Auswahl passender Placement Sound
 	static choosePlacementSound(tower) {
 		if(tower instanceof Fisher) {
-			Audiohandler.requestAudio(Ui.placementAudioWater);
+			Audiohandler.play(Ui.placementAudioWater, Ui.placementAudioWater.volume);
 		} else {
-			Audiohandler.requestAudio(Ui.placementAudioSnow);
+			Audiohandler.play(Ui.placementAudioSnow, Ui.placementAudioSnow.volume);
 		}
 	}
 }
