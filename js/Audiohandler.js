@@ -42,22 +42,4 @@ class Audiohandler {
 
 		availableAudio.play().catch(e=> {});
 	}
-	/*------------------------------------------------------ OLD VERSION--------------------------------------------
-	static sounds = [];
-	
-	static requestAudio(audio) {
-		if(Audiohandler.sounds.length < Audiohandler.MAX_SOUND_EFFECTS) {
-			Audiohandler.sounds.push(audio);
-			audio.play();
-		}
-	}
-	
-	static update() {
-		for(let i = 0; i < Audiohandler.sounds.length; i++) {
-			if(Audiohandler.sounds[i].ended) {
-				Audiohandler.sounds.splice(i, 1);
-				i--;
-			}
-		}
-	}*/
 }
