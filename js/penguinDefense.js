@@ -377,13 +377,13 @@ function setupAudio() {
 	menuAudio.volume = 0.25;
 	levelAudio.volume = 0.15;
 	Tower.throwAudio1 = document.getElementById("THROW_1");
-	Tower.throwAudio1.volume = 0.8;
+	Tower.throwAudio1.volume = 0.5;
 	Tower.throwAudio2 = document.getElementById("THROW_2");
-	Tower.throwAudio2.volume = 0.5;
+	Tower.throwAudio2.volume = 0.3;
 	Projectile.hitAudio1 = document.getElementById("HIT1");
-	Projectile.hitAudio1.volume = 0.5;
+	Projectile.hitAudio1.volume = 0.3;
 	Projectile.hitAudio2 = document.getElementById("HIT2");
-	Projectile.hitAudio2.volume = 0.5;
+	Projectile.hitAudio2.volume = 0.3;
 	Ui.buyAudio = document.getElementById('BUY');
 	Ui.buyAudio.volume = 1;
 	Ui.upgradeAudio = document.getElementById("UPGRADE_AUDIO");
@@ -391,7 +391,7 @@ function setupAudio() {
 	Ui.placementAudioSnow = document.getElementById("PLACEMENT_AUDIO_SNOW");
 	Ui.placementAudioSnow.volume = 1;
 	Ui.placementAudioWater = document.getElementById("PLACEMENET_AUDIO_WATER");
-	Ui.placementAudioWater.volume = 0.5;
+	Ui.placementAudioWater.volume = 0.8;
 }
 
 // Wait and start the game
