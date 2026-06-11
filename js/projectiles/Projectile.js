@@ -17,7 +17,8 @@ class Projectile {
 	img;
 	lifespan;
 	damage;
-	hitAudio;
+	hitAudioSrc;
+	hitAudioVolume;
 	
 	constructor(posX, posY, directionX, directionY, speed = Projectile.DEFAULT_SPEED, imgID = Projectile.DEFAULT_IMG_ID, lifespan = Projectile.DEFAULT_LIFESPAN, damage = Projectile.DEFAULT_DAMAGE) {
 		this.directionX = directionX; this.directionY = directionY;
@@ -27,13 +28,13 @@ class Projectile {
 		this.posX = posX; this.posY = posY;
 		this.damage = damage;
 		Projectile.projectiles.push(this);
-		this.hitAudio = document.createElement("audio");
+		//this.hitAudio = document.createElement("audio"); NOT NEEDED ANY LONGER
 		if(Math.random() < 0.4) {
-			this.hitAudio.src = Projectile.hitAudio1.src;
-			this.hitAudio.volume = Projectile.hitAudio1.volume;
+			this.hitAudioSrc = Projectile.hitAudio1.src;
+			this.hitAudioVolume = Projectile.hitAudio1.volume;
 		} else {
-			this.hitAudio.src = Projectile.hitAudio2.src;
-			this.hitAudio.volume = Projectile.hitAudio2.volume;
+			this.hitAudioSrc = Projectile.hitAudio2.src;
+			this.hitAudioVolume = Projectile.hitAudio2.volume;
 		}
 	}
 	
@@ -63,9 +64,7 @@ class Projectile {
 	}
 	
 	playHitSound() {
-		if(this.hitAudio.paused) {
-			Audiohandler.requestAudio(this.hitAudio);
-		}
+		Audiohandler.play(this.hitAudioSrc, this.hitAudioVolume);
 	}
 	
 	// handles what happens if an enemy gets hit by this
